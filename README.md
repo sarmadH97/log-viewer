@@ -118,7 +118,7 @@ src/
 
 | Login Page         | Table View        | Background Overlay |
 |--------------------|-------------------|--------------------|
-| ![](./public/screenshot-login.png) | ![](./public/screenshot-fullpage.png) | ![](./public/betterstudio-bg.png) |
+| ![](./public/screenshot-loginpage.png) | ![](./public/screenshot-fullpage.png) | ![](./public/betterstudio-bg.png) |
 
 ---
 
