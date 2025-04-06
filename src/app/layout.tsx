@@ -24,11 +24,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`relative min-h-screen overflow-x-hidden ${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* Background Image Layer */}
+        <div
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/betterstudio-bg.png')" }}
+        />
+
+        {/* Foreground Content Layer */}
+        <div className="relative z-10 min-h-screen">
+          {children}
+        </div>
       </body>
+
+
     </html>
   );
 }
