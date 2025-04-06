@@ -1,36 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ![](./public/betterstudio-logo.png) Log Viewer
 
-## Getting Started
+A modern, responsive log viewer built with **Next.js**, **TypeScript**, **Tailwind CSS**, and **shadcn/ui**. Includes filtering, searching, and sorting through log entries — with authentication and beautiful styling.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- 🔐 **Dummy login page** (email: `admin@logviewer.com`, password: `1234`)
+- 🔍 **Search logs** by message, trace, or author ID
+- 📂 **Filter logs** by log level (INFO, ERROR, WARN, etc.)
+- ⬆️⬇️ **Sortable table columns** with Shadcn UI
+- 📌 **Sticky table headers**
+- ⚡ **Debounced search for performance**
+- 🧪 **Unit-tested** with Jest + Testing Library
+- 🌐 **Deployed on Vercel**
+
+---
+
+## 🧱 Tech Stack
+
+- [Next.js (App Router)](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Jest](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/)
+- [Vercel](https://vercel.com)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/sarmadH97/log-viewer.git
+cd log-viewer
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Setup environment variable
+
+Create a `.env.local` file:
+
+```env
+NEXT_PUBLIC_API_KEY=your-api-key-here
+```
+
+### 4. Run the app
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔐 Dummy Login
 
-## Learn More
+| Field    | Value                    |
+|----------|--------------------------|
+| Email    | `admin@logviewer.com`    |
+| Password | `1234`                   |
 
-To learn more about Next.js, take a look at the following resources:
+You’ll be redirected to the main log viewer upon login.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧪 Run Tests
 
-## Deploy on Vercel
+```bash
+npm run test
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Includes unit tests for filtering, search, spinner, and empty state.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📦 Components Overview
+
+```
+src/
+├── app/
+│   ├── page.tsx         # Main log viewer
+│   ├── login/page.tsx   # Dummy login form
+│   └── layout.tsx       # Background and layout wrapper
+├── components/
+│   ├── Filters.tsx
+│   ├── LogTable.tsx
+│   └── ShadcnLogTable.tsx
+├── components/ui/
+│   └── table.tsx        # Shadcn Table component
+├── lib/
+│   └── utils.ts         # Tailwind `cn()` helper
+├── utils/
+│   ├── fetchLogs.ts
+│   └── parseLog.ts
+└── types/
+    └── Logs.ts
+└── api/logs/
+    └── route.ts
+└── data/
+    └── mockdata.ts
+└── hooks/
+    └── useDebounce.ts
+```
+
+---
+
+## 📸 Screenshots
+
+| Login Page         | Table View        | Background Overlay |
+|--------------------|-------------------|--------------------|
+| ![](./public/screenshot-login.png) | ![](./public/screenshot-fullpage.png) | ![](./public/betterstudio-bg.png) |
+
+---
+
+## 🌍 Deployment
+
+Deployed on Vercel.
+
+### Environment variable:
+
+```
+NEXT_PUBLIC_API_KEY = HW25gN1Ts81Dh1DRg#OlXFuJ
+```
+
+Set it in **Project → Settings → Environment Variables**, then **Redeploy**.
+
+---
+
+## 📄 License
+
+MIT License.
+
+---
+
+## 👨‍💻 Author
+
+Built with ❤️ by [Sarmad Hussain](https://github.com/sarmadH97)

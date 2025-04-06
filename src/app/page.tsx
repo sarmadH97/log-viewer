@@ -7,6 +7,8 @@ import { parseLogs } from "./utils/parseLog";
 import Filters from "./components/Filters";
 import LogTable from "./components/LogTable";
 import { useDebounced } from "./hooks/useDebounce";
+import { useRouter } from "next/navigation";
+import ShadcnLogTable from "./components/ShadcnLogTable";
 
 export default function HomePage() {
 
@@ -14,9 +16,18 @@ export default function HomePage() {
   const [filterLevel, setFilterLevel] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
+  const [changeTable, setChangeTable] = useState(true);
 
 
   const debouncedSearch = useDebounced(searchTerm, 300);
+  const router = useRouter();
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("loggedIn");
+    if (!isLoggedIn) {
+      router.push("/login");
+    }
+  }, []);
 
   useEffect(() => {
     fetchLogs()
@@ -47,24 +58,47 @@ export default function HomePage() {
 
   return (
     <div className="bg-transparent p-6">
-      <div className="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow space-y-4">
-        <div className="flex items-center gap-3">
-          <img src="/betterstudio-logo.png" alt="Logo" className="w-20 h-20 object-contain" />
-          <h1 className="text-3xl font-bold text-gray-800">Log Viewer</h1>
+      <div className="w-full flex justify-end mb-4">
+        <button
+          onClick={() => {
+            localStorage.removeItem("loggedIn");
+            router.push("/login");
+          }}
+          className="w-24 bg-gray-400 text-white py-2 rounded-md hover:bg-gray-700 transition"
+        >
+          Logout
+        </button>
+      </div>
+      <div className="max-w-6xl mx-auto bg-white/90 p-6 rounded-lg shadow space-y-4">
+        <div className="flex justify-between items-center gap-3 bg-transparent p-2 rounded-lg shadow border border-gray-200">
+          <div className="flex items-center gap-3">
+            <img src="/betterstudio-logo.png" alt="Logo" className="w-30 h-30 object-contain" />
+            <h1 className="text-3xl font-bold text-gray-800">Log Viewer</h1>
+          </div>
+          <div>
+            <button
+              onClick={() => {
+                setChangeTable(!changeTable);
+              }}
+              className="w-40 bg-gray-400 text-white py-2 rounded-md hover:bg-gray-700 transition"
+            >
+              Show {(changeTable === true) ? "Shadcn " : "Tailwind "}Table
+            </button>
+          </div>
         </div>
+        <div className="flex justify-between items-center gap-3 bg-transparent p-2 rounded-lg shadow border border-gray-200">
+          {/* Filter Dropdown */}
+          <Filters level={filterLevel} onChange={setFilterLevel} />
 
-        {/* Filter Dropdown */}
-        <Filters level={filterLevel} onChange={setFilterLevel} />
-
-        {/* Search Input */}
-        <input
-          type="text"
-          placeholder="Search logs..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-400"
-        />
-
+          {/* Search Input */}
+          <input
+            type="text"
+            placeholder="Search logs..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-400"
+          />
+        </div>
         {/* Loader / Table */}
         {loading ? (
           <div role="status" className="flex items-center justify-center min-h-[200px]">
@@ -76,7 +110,10 @@ export default function HomePage() {
           </div>
         ) : (
           <div className="bg-white/90 shadow rounded-lg border border-gray-200 max-h-[70vh] overflow-y-auto">
-            <LogTable logs={filteredLogs} />
+            {changeTable ? (
+              <LogTable logs={filteredLogs} />) : (
+              <ShadcnLogTable logs={filteredLogs} />
+            )}
           </div>
         )}
       </div>
