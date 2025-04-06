@@ -32,7 +32,6 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold text-gray-800">Log Viewer Login</h1>
         </div>
 
-
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
         <input

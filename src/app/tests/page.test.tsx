@@ -3,6 +3,17 @@ import HomePage from "../page"; // Adjust path if needed
 import * as fetchModule from "../utils/fetchLogs"; // Adjust path if needed
 import { mockLogs } from "../data/mockdata";
 
+jest.mock('next/navigation', () => ({
+    useRouter: () => ({
+        push: jest.fn(),
+        replace: jest.fn(),
+        refresh: jest.fn(),
+        back: jest.fn(),
+        forward: jest.fn(),
+        prefetch: jest.fn(),
+    }),
+}));
+
 jest.mock("../utils/fetchLogs");
 
 describe("Log Viewer", () => {

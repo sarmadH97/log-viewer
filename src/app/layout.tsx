@@ -37,13 +37,13 @@ export default function RootLayout({
         <div className="relative z-10 min-h-screen">
           {children}
         </div>
-      </body>
-      <footer className="bg-white/90 p-4 mt-6 rounded-lg">
-        <p className="text-sm text-gray-600">© 2025 BetterStudio. All rights reserved.</p>
-        <p className="text-sm text-gray-600">Made with ❤️ by Sarmad Hussain</p>
-        <p className="text-sm text-gray-600">Version 1.0.0</p>
-      </footer>
+        <footer className="bg-white/90 p-4 mt-6 rounded-lg">
+          <p className="text-sm text-gray-600">© 2025 BetterStudio. All rights reserved.</p>
+          <p className="text-sm text-gray-600">Made with ❤️ by Sarmad Hussain</p>
+          <p className="text-sm text-gray-600">Version 1.0.0</p>
+        </footer>
 
+      </body>
     </html>
   );
 }
